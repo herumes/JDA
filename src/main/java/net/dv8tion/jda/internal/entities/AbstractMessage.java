@@ -372,7 +372,7 @@ public abstract class AbstractMessage implements Message
 
     @Nonnull
     @Override
-    public List<MessageSticker> getStickers()
+    public List<Sticker> getStickers()
     {
         unsupported();
         return null;

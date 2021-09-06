@@ -1191,7 +1191,7 @@ public class EntityBuilder
         final List<Message.Attachment> attachments = map(jsonObject, "attachments",   this::createMessageAttachment);
         final List<MessageEmbed>       embeds      = map(jsonObject, "embeds",        this::createMessageEmbed);
         final List<MessageReaction>    reactions   = map(jsonObject, "reactions",     (obj) -> createMessageReaction(tmpChannel, id, obj));
-        final List<MessageSticker>     stickers    = map(jsonObject, "sticker_items", this::createSticker);
+        final List<Sticker>     stickers    = map(jsonObject, "sticker_items", this::createSticker);
 
         MessageActivity activity = null;
 
@@ -1515,14 +1515,17 @@ public class EntityBuilder
             color, thumbnail, siteProvider, author, videoInfo, footer, image, fields);
     }
 
-    public MessageSticker createSticker(DataObject content)
+    public Sticker createSticker(DataObject content)
     {
         final long id = content.getLong("id");
+        final long packId = content.getLong("pack_id", content.getLong("guild_id", 0L));
         final String name = content.getString("name");
         final String description = content.getString("description", "");
-        final long packId = content.getLong("pack_id", content.getLong("guild_id", 0L));
-        final String asset = content.getString("asset", "");
-        final MessageSticker.StickerFormat format = MessageSticker.StickerFormat.fromId(content.getInt("format_type"));
+        final Sticker.StickerType type = Sticker.StickerType.fromId(content.getInt("type"));
+        final Sticker.StickerFormat format = Sticker.StickerFormat.fromId(content.getInt("format_type"));
+        final boolean available = content.getBoolean("available", true);
+        final User user = content.hasKey("user") ? createUser(content.getObject("user")) : null;
+        final int sortValue = content.getInt("sort_value", -1);
         final Set<String> tags;
         if (content.isNull("tags"))
         {
@@ -1534,7 +1537,7 @@ public class EntityBuilder
             final Set<String> tmp = new HashSet<>(Arrays.asList(split));
             tags = Collections.unmodifiableSet(tmp);
         }
-        return new MessageSticker(id, name, description, packId, asset, format, tags);
+        return new Sticker(id, packId, name, description, tags, type, format, available, user, sortValue);
     }
 
     @Nullable

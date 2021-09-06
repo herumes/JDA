@@ -933,7 +933,7 @@ public interface Message extends ISnowflake, Formattable
     List<MessageReaction> getReactions();
 
     /**
-     * All {@link net.dv8tion.jda.api.entities.MessageSticker MessageStickers} that are in this Message.
+     * All {@link Sticker MessageStickers} that are in this Message.
      * <br>The returned MessageStickers may only contain necessary information such as the sticker id, format type, name, and icon url.
      *
      * @throws java.lang.UnsupportedOperationException
@@ -942,7 +942,7 @@ public interface Message extends ISnowflake, Formattable
      * @return Immutable list of all MessageStickers in this message.
      */
     @Nonnull
-    List<MessageSticker> getStickers();
+    List<Sticker> getStickers();
 
     /**
      * Defines whether or not this Message triggers TTS (Text-To-Speech).
