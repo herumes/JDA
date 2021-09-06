@@ -1521,7 +1521,7 @@ public class EntityBuilder
         final long packId = content.getLong("pack_id", content.getLong("guild_id", 0L));
         final String name = content.getString("name");
         final String description = content.getString("description", "");
-        final Sticker.StickerType type = Sticker.StickerType.fromId(content.getInt("type"));
+        final Sticker.StickerType type = Sticker.StickerType.fromId(content.getInt("type", -1));
         final Sticker.StickerFormat format = Sticker.StickerFormat.fromId(content.getInt("format_type"));
         final boolean available = content.getBoolean("available", true);
         final User user = content.hasKey("user") ? createUser(content.getObject("user")) : null;

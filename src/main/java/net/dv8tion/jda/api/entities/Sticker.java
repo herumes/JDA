@@ -131,7 +131,7 @@ public class Sticker implements ISnowflake
     }
 
     /**
-     * The type of sticker.
+     * The type of sticker. Will be {@link StickerType#UNKNOWN Unknown} if the sticker is from a message
      *
      * @return The type of sticker
      */
