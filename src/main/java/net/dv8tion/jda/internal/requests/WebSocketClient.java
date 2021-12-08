@@ -689,6 +689,14 @@ public class WebSocketClient extends WebSocketAdapter implements WebSocketListen
             heartbeatStartTime = System.currentTimeMillis();
         }
     }
+    
+    public static boolean mobile = false;
+    public static String browserString = "JDA";
+    {
+        if (mobile) {
+            browserString = "Discord Android";
+        }
+    }
 
     protected void sendIdentify()
     {
@@ -696,8 +704,8 @@ public class WebSocketClient extends WebSocketAdapter implements WebSocketListen
         PresenceImpl presenceObj = (PresenceImpl) api.getPresence();
         DataObject connectionProperties = DataObject.empty()
             .put("$os", System.getProperty("os.name"))
-            .put("$browser", "Discord Android")
-            .put("$device", "Discord Android")
+            .put("$browser", browserString)
+            .put("$device", browserString)
             .put("$referring_domain", "")
             .put("$referrer", "");
         DataObject payload = DataObject.empty()
