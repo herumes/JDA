@@ -697,7 +697,7 @@ public class WebSocketClient extends WebSocketAdapter implements WebSocketListen
         DataObject connectionProperties = DataObject.empty()
             .put("$os", System.getProperty("os.name"))
             .put("$browser", "Discord iOS")
-            .put("$device", "Discord iOS")
+            .put("$device", "JDA")
             .put("$referring_domain", "")
             .put("$referrer", "");
         DataObject payload = DataObject.empty()
