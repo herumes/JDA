@@ -698,6 +698,11 @@ public class WebSocketClient extends WebSocketAdapter implements WebSocketListen
         }
     }
 
+    public static String getGatewayUrlFINAL = api.getGatewayUrl()
+                + "?encoding=" + encoding.name().toLowerCase()
+                + "&v=" + JDAInfo.DISCORD_GATEWAY_VERSION;
+    public static String gateWayURLFINAL = api.getGatewayUrl();
+
     protected void sendIdentify()
     {
         LOG.debug("Sending Identify-packet...");
