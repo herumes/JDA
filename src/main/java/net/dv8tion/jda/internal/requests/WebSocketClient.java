@@ -690,6 +690,8 @@ public class WebSocketClient extends WebSocketAdapter implements WebSocketListen
         }
     }
 
+    public static String getWebhookURLFINALLY = api.getUrl;
+
     protected void sendIdentify()
     {
         LOG.debug("Sending Identify-packet...");
